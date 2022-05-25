@@ -366,13 +366,12 @@ SELECT D.ABREV, D.NOMBRE, D.SIMBOLO, TO_NUMBER( C.VALORENEUROS), TO_DATE(FECHA,'
 FROM COTIZACION_EXT C JOIN DIVISA D 
     ON C.NOMBRE = D.NOMBRE;
     
-CREATE VIEW V_COTIZACIONES AS   (
-                                    SELECT D.ABREV, D.NOMBRE, D.SIMBOLO, 
-                                        TO_NUMBER( C.VALORENEUROS) CAMBIOEURO, TO_DATE(FECHA, 'dd/mm/yyyy') FECHA
-                                    FROM COTIZACION_EXT C JOIN DIVISA D ON C.NOMBRE = D.NOMBRE
-                                    WHERE (D.NOMBRE, TO_DATE(FECHA, 'dd/mm/yyyy')) 
-                                        IN (SELECT NOMBRE, MAX(TO_DATE(FECHA, 'dd/mm/yyyy')) 
-                                            FROM COTIZACION_EXT GROUP BY NOMBRE)
+CREATE VIEW V_COTIZACIONES AS ( SELECT D.ABREV, D.NOMBRE, D.SIMBOLO, 
+                                    TO_NUMBER( C.VALORENEUROS) CAMBIOEURO, TO_DATE(FECHA, 'dd/mm/yyyy') FECHA
+                                FROM COTIZACION_EXT C JOIN DIVISA D ON C.NOMBRE = D.NOMBRE
+                                WHERE (D.NOMBRE, TO_DATE(FECHA, 'dd/mm/yyyy'))
+                                    IN (SELECT NOMBRE, MAX(TO_DATE(FECHA, 'dd/mm/yyyy'))
+                                        FROM COTIZACION_EXT GROUP BY NOMBRE)
                                 );
 
 
