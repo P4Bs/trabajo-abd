@@ -111,12 +111,9 @@ CREATE TABLE movimiento (
     concepto        VARCHAR2(40 CHAR) NOT NULL,
     emisor          VARCHAR2(20 CHAR) NOT NULL,
     tipo_emisor     VARCHAR2(20 CHAR) NOT NULL,
-    cantidad        NUMBER(10, 2) NOT NULL,
+    cantidad        FLOAT(2) NOT NULL,
     modo_operacion  VARCHAR2(20 CHAR) NOT NULL,
     estado	    VARCHAR2(20 CHAR) NOT NULL,
-    fecha_pago      DATE NOT NULL,
-    n_plazos        VARCHAR2(2 CHAR),
-    tiempo_plazo    VARCHAR2(3 CHAR),
     transaccion_id  INTEGER NOT NULL,
     tarjeta_id      INTEGER NOT NULL,
     divisa_abrev   VARCHAR2(10 CHAR) NOT NULL
