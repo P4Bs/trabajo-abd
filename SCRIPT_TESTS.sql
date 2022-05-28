@@ -101,4 +101,36 @@ END;
 SELECT * FROM CTA_FINTECH;
 SELECT * FROM DEPOSITADA_EN;
 
--- TESTS PK OPERATIVA
+-- TESTS PK OPERATIVA | TODO : HACER ESTO 
+BEGIN
+    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL,'Cliente_2', 'FISICA', 'ALTA',
+                                     SYSDATE, NULL, 'C/BODEGUEROS, 6',
+                                    'MALAGA', '29006', 'ESP', NULL,
+                                    'PEPE', 'MORENO', '13-2-1998');
+    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL, 'CLIENTE_3', 'FISICA', 'ALTA',
+                                    SYSDATE, NULL, 'C/CISTER, 4',
+                                    'MALAGA', '29015', 'ESP', NULL,
+                                    'MANUEL', 'JIMENEZ', '13-8-2001');
+    PK_GESTION_CUENTAS.APERTURA_CUENTA('41', 'ES5600754254234435629239',
+                                        NULL,
+                                        SYSDATE, NULL,
+                                        NULL,
+                                        'ES4314659844877793142346', NULL,
+                                        NULL,
+                                        NULL,
+                                        'BBVA', 'C/ SALITRE BB, 6',
+                                        'ESP', 0, SYSDATE, NULL,
+                                        'EUR'
+                                        );
+    PK_GESTION_CUENTAS.APERTURA_CUENTA('61', 'ES5030045746482445253576',
+                                        NULL,
+                                        SYSDATE, NULL,
+                                        NULL,
+                                        NULL, 'ES6304877658986216822278',
+                                        NULL,
+                                        NULL,
+                                        'BBVA', 'C/ SALITRE BB, 6',
+                                        'ESP', 0, SYSDATE, NULL,
+                                        'EUR'
+                                        );
+END;
