@@ -108,7 +108,7 @@ ALTER TABLE individual ADD CONSTRAINT individual_pk PRIMARY KEY ( id );
 CREATE TABLE movimiento (
     id              INTEGER NOT NULL,
     fecha_operacion DATE NOT NULL,
-    concepto        VARCHAR2(40 CHAR) NOT NULL,
+    concepto        VARCHAR2(40 CHAR),
     emisor          VARCHAR2(20 CHAR) NOT NULL,
     tipo_emisor     VARCHAR2(20 CHAR) NOT NULL,
     cantidad        FLOAT(2) NOT NULL,
