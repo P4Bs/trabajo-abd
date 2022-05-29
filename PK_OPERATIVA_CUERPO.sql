@@ -46,7 +46,8 @@ CREATE OR REPLACE PACKAGE BODY PK_OPERATIVA AS
             SELECT CAMBIO_EUR INTO CAMBIO_EUR_DESTINO
                 FROM DIVISA
                 WHERE ABREV = DIVISA_DESTINO;
-                
+            
+            -- CAMBIAR SI ES INGRESO O CARGO
             UPDATE CTA_REF
                 SET
                     SALDO = SALDO_ORIGEN - CANTIDAD_TRANS/CAMBIO_EUR_ORIGEN

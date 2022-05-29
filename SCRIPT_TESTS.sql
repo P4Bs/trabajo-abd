@@ -103,34 +103,46 @@ SELECT * FROM DEPOSITADA_EN;
 
 -- TESTS PK OPERATIVA | TODO : HACER ESTO 
 BEGIN
-    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL,'Cliente_2', 'FISICA', 'ALTA',
-                                     SYSDATE, NULL, 'C/BODEGUEROS, 6',
-                                    'MALAGA', '29006', 'ESP', NULL,
-                                    'PEPE', 'MORENO', '13-2-1998');
-    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL, 'CLIENTE_3', 'FISICA', 'ALTA',
-                                    SYSDATE, NULL, 'C/CISTER, 4',
-                                    'MALAGA', '29015', 'ESP', NULL,
-                                    'MANUEL', 'JIMENEZ', '13-8-2001');
-    PK_GESTION_CUENTAS.APERTURA_CUENTA('41', 'ES5600754254234435629239',
+    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL,'Transaccion1', 'FISICA', 'ALTA',
+                                     SYSDATE, NULL, 'C/CARPIO, 6',
+                                    'MALAGA', '29002', 'ESP', NULL,
+                                    'MIGUEL', 'GOMEZ', '11-7-1993');
+    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL, 'Transaccion2', 'FISICA', 'ALTA',
+                                        SYSDATE, NULL, 'C/IBSEN, 11',
+                                        'MALAGA', '29004', 'ESP', NULL,
+                                        'LUIS', 'PEREZ', '22-4-1989');
+END;
+
+BEGIN
+    PK_GESTION_CUENTAS.APERTURA_CUENTA('81', 'ES4514659518316312472747',
                                         NULL,
                                         SYSDATE, NULL,
                                         NULL,
-                                        'ES4314659844877793142346', NULL,
+                                        'ES3201284443692957823852', NULL,
                                         NULL,
                                         NULL,
                                         'BBVA', 'C/ SALITRE BB, 6',
-                                        'ESP', 0, SYSDATE, NULL,
+                                        'ESP', 10000, SYSDATE, NULL,
                                         'EUR'
                                         );
-    PK_GESTION_CUENTAS.APERTURA_CUENTA('61', 'ES5030045746482445253576',
-                                        NULL,
+    PK_GESTION_CUENTAS.APERTURA_CUENTA('82',
+                                        'ES5920804517103573583342', NULL,
                                         SYSDATE, NULL,
                                         NULL,
-                                        NULL, 'ES6304877658986216822278',
+                                        NULL, 'ES3220386569077575131776',
                                         NULL,
                                         NULL,
                                         'BBVA', 'C/ SALITRE BB, 6',
-                                        'ESP', 0, SYSDATE, NULL,
+                                        'ESP', 10000,
+                                        SYSDATE, NULL,
                                         'EUR'
+                                        );
+END;
+
+BEGIN
+    PK_OPERATIVA.INSERTAR_TRANSACCION('321',
+                                        SYSDATE, 200,
+                                        NULL, 'DEBITO',
+                                        
                                         );
 END;
