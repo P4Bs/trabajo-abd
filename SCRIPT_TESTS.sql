@@ -101,7 +101,8 @@ END;
 SELECT * FROM CTA_FINTECH;
 SELECT * FROM DEPOSITADA_EN;
 
--- TESTS PK OPERATIVA | TODO : HACER ESTO 
+-- TESTS PK OPERATIVA
+-- PROCEDIMIENTO INSERTAR TRANSACCION
 BEGIN
     PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL,'Transaccion1', 'FISICA', 'ALTA',
                                      SYSDATE, NULL, 'C/CARPIO, 6',
@@ -142,7 +143,54 @@ END;
 BEGIN
     PK_OPERATIVA.INSERTAR_TRANSACCION('321',
                                         SYSDATE, 200,
-                                        NULL, 'DEBITO',
-                                        
+                                        NULL, 'CARGO',
+                                        NULL, NULL,
+                                        'EUR', 'EUR',
+                                        'ES4514659518316312472747', 'ES5920804517103573583342'
                                         );
+END;
+SELECT * FROM CTA_REF;
+
+-- PROCEDIMIENTO CAMBIO_DIVISA
+BEGIN
+    PK_GESTION_CLIENTES.ALTA_CLIENTE(SQ_CLIENTE.NEXTVAL,'Cambio_Divisa', 'FISICA', 'ALTA',
+                                     SYSDATE, NULL, 'C/LOS MONTES, 6',
+                                    'MALAGA', '29022', 'ESP', NULL,
+                                    'JORGE', 'JIMENEZ', '14-3-1988');
+END;
+SELECT * FROM CLIENTE;
+
+BEGIN
+    PK_GESTION_CUENTAS.APERTURA_CUENTA('101', 'ES2320801935609752334384',
+                                        NULL,
+                                        SYSDATE, NULL,
+                                        NULL,
+                                        'ES7520382127074632458753', NULL,
+                                        NULL,
+                                        NULL,
+                                        'BBVA', 'C/ SALITRE BB, 6',
+                                        'ESP', 200, SYSDATE, NULL,
+                                        'EUR'
+                                        );
+END;
+
+BEGIN
+    INSERT INTO CUENTA
+        (IBAN, SWIFT)
+    VALUES
+        ('ES0514658777864183252189', NULL);
+        
+    INSERT INTO CTA_REF
+        (IBAN, NOMBRE_BANCO, SUCURSAL, PAIS, SALDO, FECHA_APERTURA, ESTADO, DIVISA_ABREV)
+    VALUES
+        ('ES0514658777864183252189', 'BBVA', 'C/ SALITRE BB, 6', 'ESP', 100, SYSDATE, NULL, 'USD');
+        
+    INSERT INTO DEPOSITADA_EN
+        (SALDO, CTA_POOLED_IBAN, CTA_REF_IBAN)
+    VALUES
+        (100, 'ES2320801935609752334384', 'ES0514658777864183252189');
+END;
+
+BEGIN
+    PK_OPERATIVA.CAMBIO_DIVISA('ES2320801935609752334384', 'EUR', 'USD');
 END;
