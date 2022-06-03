@@ -330,7 +330,7 @@ select 'drop table ' || table_name || ' cascade constraints; '  from user_tables
 
 /* PASO 3*/
 -- LA IMPORTACION DE LOS DATOS SE LLEVA A CABO EN SQL DEVELOPER. LOS DATOS SON IMPORTADOS CORRECTAMENTE :>.
-
+-- LOS DATOS SE CARGAN POR INTERFAZ GRAFICA
 
 /* PASO 4*/
 -- DESDE SYSTEM
@@ -373,7 +373,7 @@ CREATE VIEW V_COTIZACIONES AS ( SELECT D.ABREV, D.NOMBRE, D.SIMBOLO,
                                     IN (SELECT NOMBRE, MAX(TO_DATE(FECHA, 'dd/mm/yyyy'))
                                         FROM COTIZACION_EXT GROUP BY NOMBRE)
                                 );
-
+SELECT * FROM V_COTIZACIONES;
 
 /* PASO 5 */
 -- DESDE FINTECH

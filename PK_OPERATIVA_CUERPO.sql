@@ -13,7 +13,6 @@ CREATE OR REPLACE PACKAGE BODY PK_OPERATIVA AS
         SALDO_DESTINO           FLOAT;
         CAMBIO_EUR_ORIGEN       DIVISA.CAMBIO_EUR%TYPE;
         CAMBIO_EUR_DESTINO      DIVISA.CAMBIO_EUR%TYPE;
-        TEST_VAR                FLOAT;
         
         BEGIN
             SAVEPOINT INSERTAR_TRANSACCION;
@@ -66,11 +65,10 @@ CREATE OR REPLACE PACKAGE BODY PK_OPERATIVA AS
             DBMS_OUTPUT.PUT_LINE(CANTIDAD_TRANS);
             DBMS_OUTPUT.PUT_LINE(CAMBIO_EUR_ORIGEN);
             
-            TEST_VAR := 800;
             
             UPDATE CTA_REF R
                 SET
-                    R.SALDO = TEST_VAR
+                    R.SALDO = SALDO_ORIGEN
                 WHERE R.IBAN = IBAN_REFERENCIA_ORIGEN;
             
             UPDATE CTA_REF R
